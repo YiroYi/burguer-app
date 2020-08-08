@@ -4,12 +4,17 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';//hay que agregar arriba applyMiddleware, compose
 
 import { Provider } from 'react-redux';
-import reducer from './store/reducer';
+import burguerBuilderReducer from './store/reducers/burguerBuilder';
 
-const store = createStore(reducer);
+const composeEnhacer = compose;
+
+const store = createStore(burguerBuilderReducer, composeEnhacer(
+  applyMiddleware(thunk)
+));
 
 const app = (
   <Provider store={store}>
