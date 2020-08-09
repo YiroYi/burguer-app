@@ -15,7 +15,7 @@ class BurguerBuilder extends Component {
     purchasing: false
   }
   componentDidMount() {
-
+    this.props.onInitIngredients();
   }
 
   updatePurchaseState (updatedIngredients) {
@@ -101,7 +101,7 @@ class BurguerBuilder extends Component {
     }
 
     let orderSummary = null;
-    let burguer = <Spinner />
+    let burguer = this.props.error ? <p>Error</p> : <Spinner />
 
     if (this.props.ings) {
       burguer = (
@@ -117,7 +117,7 @@ class BurguerBuilder extends Component {
             />
           </Aux>
           );
-      orderSummary =  this.state.error ? <p>Error</p> : <OrderSummary
+      orderSummary =  <OrderSummary
               ingredients={this.props.ings}
               purchaseCancelled={this.purchaseCancelHandler}
               purchaseContinued={this.purchaseContinueHandler}
@@ -139,14 +139,16 @@ class BurguerBuilder extends Component {
 const mapStateToProps = state => {
   return {
     ings: state.ingredients,
-    price: state.totalPrice
+    price: state.totalPrice,
+    error: state.error
   };
 }
 
 const mapDispatchToProps =  dispatch => {
   return {
     onIngredientAdded: (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)),
-    onIngredientRemoved: (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName))
+    onIngredientRemoved: (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)),
+    onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
   };
 }
 

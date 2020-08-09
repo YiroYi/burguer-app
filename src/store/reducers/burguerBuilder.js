@@ -16,7 +16,7 @@ const INGREDIENT_PRICES = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_INGREDIENT:
-      return{
+      return {
         ...state, //First copy the old state
         ingredients: {
           ...state.ingredients, //Copy the properties of the old state
@@ -25,8 +25,21 @@ const reducer = (state = initialState, action) => {
         totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
       };
 
+    case actionTypes.SET_INGREDIENTS:
+      return {
+        ...state,
+        ingredients: action.ingredients,
+        error: false
+      };
+
+    case actionTypes.FETCH_INGREDIENTS_FAILED:
+      return {
+        ...state,
+        error: true
+      };
+
     case actionTypes.REMOVE_INGREDIENT:
-      return{
+      return {
         ...state, //First copy the old state
         ingredients: {
           ...state.ingredients, //Copy the properties of the old state
