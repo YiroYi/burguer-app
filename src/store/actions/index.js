@@ -3,6 +3,7 @@ export {
   removeIngredient,
   initIngredients
 } from './burguerBuilder';
+
 export {
   purchaseBurguerStart,
   purchaseBurguer,
@@ -10,3 +11,7 @@ export {
   fetchOrders
 
   } from './order';
+
+export {
+  auth
+} from './auth';
