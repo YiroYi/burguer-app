@@ -10,12 +10,14 @@ import thunk from 'redux-thunk';//hay que agregar arriba applyMiddleware, compos
 import { Provider } from 'react-redux';
 import burguerBuilderReducer from './store/reducers/burguerBuilder';
 import orderReducer from './store/reducers/order';
+import authReducer from './store/reducers/auth';
 
 const composeEnhacer = compose;
 
 const rootReducer = combineReducers({
   burguerBuilder: burguerBuilderReducer,
-  orders: orderReducer
+  orders: orderReducer,
+  auth: authReducer
 });
 
 
