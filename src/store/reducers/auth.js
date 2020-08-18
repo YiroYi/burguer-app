@@ -13,6 +13,9 @@ const authStart = (state = initialState, action) => {
 }
 
 const authSuccess = (state, action) => {
+    console.log("Reducer");
+    console.log(action.idToken);
+    console.log(action.userId);
   return updateObject(state, {
     token: action.idToken,
     userId: action.userId,
