@@ -61,7 +61,11 @@ class BurguerBuilder extends Component {
   // }
 
   purchaseHandler = () => {
-    this.setState({purchasing: true});
+    if(this.props.isAuthenticated) {
+      this.setState({purchasing: true});
+    } else {
+      this.props.history.push('/auth');
+    }
   }
 
   purchaseCancelHandler = () => {
@@ -114,6 +118,7 @@ class BurguerBuilder extends Component {
               price={this.props.price}
               purchasable={this.updatePurchaseState(this.props.ings)}
               ordered={this.purchaseHandler}
+              isAuth={this.props.isAuthenticated}
             />
           </Aux>
           );
@@ -140,7 +145,8 @@ const mapStateToProps = state => {
   return {
     ings: state.burguerBuilder.ingredients, //burguerBuilder es el nombre que le dimos al combinar los reducer en el index
     price: state.burguerBuilder.totalPrice,
-    error: state.burguerBuilder.error
+    error: state.burguerBuilder.error,
+    isAuthenticated: state.auth.token !== null
   };
 }
 
