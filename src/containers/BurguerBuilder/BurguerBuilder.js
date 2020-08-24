@@ -10,7 +10,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 
-class BurguerBuilder extends Component {
+export class BurguerBuilder extends Component {
   state = {
     purchasing: false
   }
